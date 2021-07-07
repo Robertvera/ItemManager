@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "parcel src/index.html --open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +17,16 @@
   "bugs": {
     "url": "https://github.com/Robertvera/ItemManager/issues"
   },
-  "homepage": "https://github.com/Robertvera/ItemManager#readme"
+  "homepage": "https://github.com/Robertvera/ItemManager#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.0.0-beta.2",
+    "@types/react": "^17.0.14",
+    "@types/react-dom": "^17.0.9",
+    "parcel": "^2.0.0-beta.2",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
 }
