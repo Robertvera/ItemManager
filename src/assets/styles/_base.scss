@@ -1,0 +1,25 @@
+html,
+body,
+div#root {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin button($bg, $color, $radius, $pos) {
+  position: $pos;
+  background: $bg;
+  color: $color;
+  border-radius: $radius;
+  &:hover {
+    background: darken($bg, 8%);
+    transition: all 0.3s ease;
+  }
+  &:active {
+    background: darken($bg, 25%);
+  }
+}

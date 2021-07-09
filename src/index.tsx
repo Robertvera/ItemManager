@@ -1,9 +1,5 @@
 import React from 'react';
 import { render } from 'react-dom';
-import './assets/styles/main.scss';
+import App from './App';
 
-const Application: React.SFC<{}> = () => (
-    <h1>Applications</h1>
-);
-
-render(<Application />, document.getElementById('root'));
+render(<App />, document.getElementById('root'));
