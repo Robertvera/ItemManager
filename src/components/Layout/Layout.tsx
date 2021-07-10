@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { ReactChild } from 'react';
 import './styles.scss';
 import Header from '../Header/Header';
-import FavListButton from '../FavListButton/FavListButton';
+import Button from '../Button/Button';
 
-const Layout: React.FC<{}> = () => (
-    <>
+type LayoutProps = {
+    children: ReactChild;
+}
+
+const Layout = ({ children }: LayoutProps) => (
+    <div className='content'>
         <Header />
-        <FavListButton />
-    </>
+        {children}
+        <Button position='floating' shape='round'>🥰</Button>
+    </div>
 );
 
 export default Layout;

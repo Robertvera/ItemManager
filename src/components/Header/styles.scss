@@ -1,10 +1,20 @@
 .header {
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: #12c1ac;
   font-family: 'Pacifico', cursive;
-  height: 100px;
+  height: 50px;
   box-shadow: 1px 2px 5px #999;
-  position: fixed;
   width: 100%;
+  position: fixed;
+  @media (min-width: 481px) {
+    height: 80px;
+  }
+  .header__brand {
+    font-size: 1.5em;
+    @media (min-width: 481px) {
+      font-size: 2em;
+    }
+  }
 }

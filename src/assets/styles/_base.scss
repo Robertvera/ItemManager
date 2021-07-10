@@ -10,11 +10,28 @@ div#root {
   padding: 0;
 }
 
-@mixin button($bg, $color, $radius, $pos) {
-  position: $pos;
+button {
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+
+//COLORS VARS
+$primary: #12c1ac;
+$secondary: #ffc300;
+$white: #fff;
+$black: #000;
+
+//SHAPE VARS
+$round: 50px;
+$not-round: 0px;
+$small: 20px;
+$medium: 60px;
+$big: 170px;
+
+//BUTTON MIXINS
+@mixin button-bg($bg) {
   background: $bg;
-  color: $color;
-  border-radius: $radius;
   &:hover {
     background: darken($bg, 8%);
     transition: all 0.3s ease;
@@ -22,4 +39,21 @@ div#root {
   &:active {
     background: darken($bg, 25%);
   }
+}
+
+@mixin button-color($color) {
+  color: $color;
+}
+
+@mixin button-shape($radius, $width, $height) {
+  border-radius: $radius;
+  width: $width;
+  height: $height;
+}
+
+@mixin button-position($position, $bottom, $top, $right) {
+  position: $position;
+  bottom: $bottom;
+  top: $top;
+  right: $right;
 }
