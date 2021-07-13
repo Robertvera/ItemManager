@@ -3,15 +3,15 @@ import './styles.scss';
 import Item from '../Item/Item';
 
 type ItemListProps = {
-    itemsArray: Array<any>;
+    items: Array<any>;
 }
 
-const ItemList = ({ itemsArray }: ItemListProps) =>{
+const ItemList = ({ items }: ItemListProps) =>{
     let key = 0
      return (
         <div className='flex-container'>
            {
-               itemsArray && itemsArray.map(({ title, description, price, email, image }) => <Item
+               items && items.map(({ title, description, price, email, image }) => <Item
                     key={key++}
                     title={title}
                     description={description}

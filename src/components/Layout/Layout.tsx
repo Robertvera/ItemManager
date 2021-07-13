@@ -11,7 +11,7 @@ const Layout = ({ children }: LayoutProps) => (
     <div className='content'>
         <Header />
         {children}
-        <Button position='floating' shape='round'>🥰</Button>
+        <Button btnType='floating' shape='round' id='btn-favList'>🥰</Button>
     </div>
 );
 

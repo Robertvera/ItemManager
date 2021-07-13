@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/Robertvera/ItemManager#readme",
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.0.0-beta.2",
+    "@parcel/transformer-sass": "^2.0.0-nightly.767",
     "@types/react": "^17.0.14",
     "@types/react-dom": "^17.0.9",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
@@ -32,7 +32,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "parcel": "^2.0.0-beta.2",
+    "parcel": "^2.0.0-nightly.767",
     "prettier": "^2.3.2",
     "typescript": "^4.3.5"
   },

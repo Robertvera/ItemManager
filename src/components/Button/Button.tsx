@@ -5,8 +5,9 @@ type ButtonsProps = {
     children: ReactChild;
     onClick?: (ev: React.MouseEvent) => void;
     color?: ColorVariants;
-    position?: PositionVariants;
+    btnType?: ButtonTypeVariants;
     shape?: ShapeVariants;
+    id: string;
 }
 
 const btnModifiers = (modifiers: Array<string>) => {
@@ -19,12 +20,12 @@ const btnModifiers = (modifiers: Array<string>) => {
     return classNames.join(' ');
 }
 
-const Button = ({children, onClick = () => {}, color = 'primary', position = 'relative', shape = 'rectangle'} : ButtonsProps) => {
-    const modifiers = [color, position, shape]
+const Button = ({children, onClick = () => {}, color = 'primary', btnType = 'not-floating', shape = 'rectangle', id = ''} : ButtonsProps) => {
+    const modifiers = [color, btnType, shape]
     const className = `btn ${btnModifiers(modifiers)}`;
 
     return (
-        <button type='button' onClick={onClick} className={className}>
+        <button type='button' onClick={onClick} className={className} id={id}>
             <span>{children}</span>
         </button>
     );
