@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.scss';
 
-const Item = ({ title, description, price, email, image }: ItemProps) => (
+const Item = ({ title, description, price, email, image }: Item) => (
     <div className='grid-item'>
         <img src={image} alt='random' />
         <div className='item-body'>

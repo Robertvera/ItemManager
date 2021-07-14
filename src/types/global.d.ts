@@ -1,7 +1,7 @@
 declare type ColorVariants = 'primary' | 'secondary';
 declare type ButtonTypeVariants = 'not-floating' | 'floating';
 declare type ShapeVariants = 'rectangle' | 'square' | 'round';
-declare type ItemProps = {
+declare type Item = {
     title: string;
     description: string;
     price: string;

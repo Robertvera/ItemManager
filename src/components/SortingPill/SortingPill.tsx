@@ -9,6 +9,8 @@ type SortingProps = {
 const SortingPill = ({ children, setSortBy }: SortingProps) =>{
     const handleClick = (event: MouseEvent<HTMLElement>) => {
         event.preventDefault();
+
+        setSortBy(event.target?.firstChild?.textContent);
     }
 
     return (

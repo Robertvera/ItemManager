@@ -1,30 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './assets/styles/_base.scss';
 import Home from './components/Home/Home';
 import Layout from './components/Layout/Layout'
 import useItems from './hooks/useItems';
-import { FILTER_CRITERIA } from './constants';
+import useFilter from './hooks/useFilter';
 
 const App: React.FC<{}> = () => {
   const { isLoading, error, items } = useItems();
   const [ searchString, setSearchString ] = useState('');
-  const [searchResults, setSearchResults] = useState(items);
-  const [ sortBy, setSortBy ] = useState('')
+  const [ sortBy, setSortBy ] = useState('Title');
+  const [ orderBy, setOrderBy ] = useState('ascending');
+  const { filterResults } = useFilter(items?.items, searchString, sortBy, orderBy);
 
-  useEffect(() => {
-    const results = items?.items.filter((item: ItemProps) => {
-      const itemCriteriaDetails:Array<string> = [];
 
-      FILTER_CRITERIA.forEach((criteria) => {
-        itemCriteriaDetails.push(item[criteria].toLowerCase());
-      });
-
-      return itemCriteriaDetails.join('').includes(searchString.toLowerCase());
-    })
-    setSearchResults(results);
-  }, [searchString])
-
-  const processedItems = searchString.length > 0 ? searchResults : items?.items;
+  const processedItems = searchString.length > 0 ? filterResults : items?.items;
 
   return (
     <Layout>
@@ -32,6 +21,7 @@ const App: React.FC<{}> = () => {
         items={processedItems}
         setSearchString={setSearchString}
         setSortBy={setSortBy}
+        setOrderBy={setOrderBy}
       />
     </Layout>
   )

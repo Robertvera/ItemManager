@@ -1,17 +1,23 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, MouseEvent } from 'react';
 import './styles.scss';
-
+import { SORT_CRITERIA } from '../../constants';
 import SortingPill from '../SortingPill/SortingPill';
 
 type SearchBarProps = {
     setSearchString: React.Dispatch<React.SetStateAction<string>>;
     setSortBy: React.Dispatch<React.SetStateAction<string>>;
+    setOrderBy: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SearchBar = ({ setSearchString, setSortBy }: SearchBarProps) => {
+const SearchBar = ({ setSearchString, setSortBy, setOrderBy }: SearchBarProps) => {
     const handleChange = (e:ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         setSearchString(e.target.value);
+    }
+
+    const handleClick = (e: MouseEvent<HTMLElement>) => {
+        e.preventDefault();
+        setOrderBy(e.target?.dataset.order)
     }
 
     return (
@@ -26,11 +32,12 @@ const SearchBar = ({ setSearchString, setSortBy }: SearchBarProps) => {
                 <div className='sorting__container' >
                     <label>Sort by</label>
                     <div className='pills__container'>
-                        <SortingPill setSortBy={setSortBy}>Title</SortingPill>
-                        <SortingPill>Description</SortingPill>
-                        <SortingPill>Price</SortingPill>
-                        <SortingPill>Email</SortingPill>
+                        {SORT_CRITERIA.map((criteria) => <SortingPill key={criteria} setSortBy={setSortBy}>{criteria}</SortingPill>)}
                     </div>
+                </div>
+                <div className='ordering__container'>
+                    <span data-order='ascending' onClick={handleClick}>🔺</span>
+                    <span data-order='descending' onClick={handleClick}>🔻</span>
                 </div>
             </div>
     );
