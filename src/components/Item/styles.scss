@@ -2,11 +2,17 @@
   margin: 5px;
   min-height: 110px;
   display: flex;
-  flex-direction: column;
   border-radius: 5px;
   border: 2px solid rgb(240, 229, 229);
-  width: 345px;
-  height: 620px;
+  flex-direction: column;
+  &--full {
+    width: 345px;
+    height: 620px;
+  }
+  &--pill {
+    width: 345px;
+    height: 450;
+  }
   img {
     border-radius: 5px;
     width: 345px;
@@ -24,6 +30,9 @@
     flex-direction: column;
     margin: 0px;
     font-family: 'Roboto', sans-serif;
+    .item-fav {
+      font-size: 2em;
+    }
   }
 
   @media (min-width: 481px) {

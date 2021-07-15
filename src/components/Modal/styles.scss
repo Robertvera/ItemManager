@@ -1,0 +1,32 @@
+@use "../../assets/styles/base" as *;
+
+.modal__container {
+  background: white;
+  position: fixed;
+  width: 100%;
+  flex-direction: column;
+  overflow-y: scroll;
+  max-height: 100%;
+  z-index: 1;
+  &--hidden {
+    display: none;
+  }
+  &--visible {
+    display: flex;
+  }
+  .modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 13px;
+
+    #btn-close-modal {
+      font-size: 0.5em;
+      width: 30px;
+      height: 30px;
+    }
+  }
+  .modal__item-list {
+    overflow-y: scroll;
+  }
+}

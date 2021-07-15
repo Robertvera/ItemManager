@@ -1,9 +1,9 @@
-import React, { ReactChild } from 'react';
+import React, { ReactChild, ReactElement } from 'react';
 import './styles.scss';
 
 type ButtonsProps = {
     children: ReactChild;
-    onClick?: (ev: React.MouseEvent) => void;
+    onClick?: (ev: React.MouseEvent<ReactElement>) => void;
     color?: ColorVariants;
     btnType?: ButtonTypeVariants;
     shape?: ShapeVariants;
