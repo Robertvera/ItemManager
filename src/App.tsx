@@ -12,14 +12,12 @@ const App: React.FC<{}> = () => {
   const [ orderBy, setOrderBy ] = useState('ascending');
   const { filterResults } = useFilter(items?.items, searchString, sortBy, orderBy);
 
-
-  const processedItems = searchString.length > 0 ? filterResults : items?.items;
-
   return (
     <Layout>
       <Home 
-        items={processedItems}
+        items={filterResults}
         setSearchString={setSearchString}
+        sortBy={sortBy}
         setSortBy={setSortBy}
         setOrderBy={setOrderBy}
       />

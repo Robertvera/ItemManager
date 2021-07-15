@@ -7,10 +7,10 @@ const sortItems = (items:Array<Item>, order:string, criteria:string) => {
     }
 
     if (order === 'ascending') {
-        return items.sort( (a:Item, b:Item) => a[criteria.toLowerCase()] - b[criteria.toLowerCase()]);
+        return items.sort( (a:Item, b:Item) => a[criteria.toLowerCase()].toLowerCase() > b[criteria.toLowerCase()].toLowerCase() ? 1 : -1);
     }
 
-    return items.sort( (a:Item, b:Item) => a[criteria.toLowerCase()] - b[criteria.toLowerCase()]).reverse();
+    return items.sort( (a:Item, b:Item) => a[criteria.toLowerCase()].toLowerCase() < b[criteria.toLowerCase()].toLowerCase() ? 1 : -1);
 }
 
 export default sortItems;

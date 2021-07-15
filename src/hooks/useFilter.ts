@@ -21,7 +21,7 @@ const useFilter = (items: Array<Item>, searchString: string, sortBy: string, ord
         }
 
         setFilterResults(results);
-      }, [searchString, sortBy, order])
+      }, [items, searchString, sortBy, order])
 
       return { filterResults }
 }

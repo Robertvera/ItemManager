@@ -4,12 +4,13 @@ import { SORT_CRITERIA } from '../../constants';
 import SortingPill from '../SortingPill/SortingPill';
 
 type SearchBarProps = {
+    sortBy: string;
     setSearchString: React.Dispatch<React.SetStateAction<string>>;
     setSortBy: React.Dispatch<React.SetStateAction<string>>;
     setOrderBy: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SearchBar = ({ setSearchString, setSortBy, setOrderBy }: SearchBarProps) => {
+const SearchBar = ({ sortBy, setSearchString, setSortBy, setOrderBy }: SearchBarProps) => {
     const handleChange = (e:ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         setSearchString(e.target.value);
@@ -32,7 +33,7 @@ const SearchBar = ({ setSearchString, setSortBy, setOrderBy }: SearchBarProps) =
                 <div className='sorting__container' >
                     <label>Sort by</label>
                     <div className='pills__container'>
-                        {SORT_CRITERIA.map((criteria) => <SortingPill key={criteria} setSortBy={setSortBy}>{criteria}</SortingPill>)}
+                        {SORT_CRITERIA.map((criteria) => <SortingPill key={criteria} sortBy={sortBy} setSortBy={setSortBy}>{criteria}</SortingPill>)}
                     </div>
                 </div>
                 <div className='ordering__container'>
