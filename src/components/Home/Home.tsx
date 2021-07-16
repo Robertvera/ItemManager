@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { RefObject } from 'react';
 import ItemList from '../ItemList/ItemList';
 import Filter from '../Filter/Filter'
 import Modal from '../Modal/Modal';
@@ -15,12 +15,13 @@ type HomeProps = {
     favorites: Array<Item>;
     setFavorites: React.Dispatch<React.SetStateAction<Item[]>>;
     filteredFavs: Array<Item>;
+    loader: RefObject<() => void>;
 }
 
-const Home = ({ items, sortBy, setSearchString, setFavSearchString, setSortBy, setOrderBy, setModalVisibility, modalVisibility, favorites, setFavorites, filteredFavs }: HomeProps) => (
+const Home = ({ items, sortBy, setSearchString, setFavSearchString, setSortBy, setOrderBy, setModalVisibility, modalVisibility, favorites, setFavorites, filteredFavs, loader }: HomeProps) => (
     <>
         <Filter setSearchString={setSearchString} sortBy={sortBy} setSortBy={setSortBy} setOrderBy={setOrderBy}/>
-        <ItemList items={items} favorites={favorites} setFavorites={setFavorites}/>
+        <ItemList items={items} favorites={favorites} setFavorites={setFavorites} loader={loader}/>
         <Modal modalVisibility={modalVisibility} setModalVisibility={setModalVisibility} favorites={favorites} setFavorites={setFavorites} setFavSearchString={setFavSearchString} filteredFavs={filteredFavs}/>
     </>
 );

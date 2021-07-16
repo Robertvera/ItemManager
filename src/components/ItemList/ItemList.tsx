@@ -6,9 +6,10 @@ type ItemListProps = {
     items: Array<any>;
     favorites: Array<Item>;
     setFavorites: React.Dispatch<React.SetStateAction<Array<Item>>>;
+    loader: RefObject<() => void>;
 }
 
-const ItemList = ({ items, favorites, setFavorites }: ItemListProps) =>{
+const ItemList = ({ items, favorites, setFavorites, loader }: ItemListProps) =>{
     let key = 0
     const isFav = (title: string) => {
         const favTitles = favorites.map((fav) => fav.title);
@@ -41,6 +42,7 @@ const ItemList = ({ items, favorites, setFavorites }: ItemListProps) =>{
                         />
                })
            }
+           <div ref={loader} />
         </div>
     )
 }
