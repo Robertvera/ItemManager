@@ -1,39 +1,5 @@
-@use "../../assets/styles/base" as *;
-
-.filter__container {
-  display: flex;
-  flex-direction: column;
-  &:hover {
-    box-shadow: 1px 1px 8px 1px #dcdcdc;
-  }
-  &:focus-within {
-    box-shadow: 1px 1px 8px 1px #dcdcdc;
-    outline: none;
-  }
-  input {
-    border: none;
-    border: 1px solid #dcdcdc;
-    height: 45px;
-  }
-
-  .sorting__container {
-    display: flex;
-    align-items: center;
-    margin: 13px;
-
-    label {
-      width: 20%;
-    }
-
-    .pills__container {
-      display: flex;
-      overflow-x: auto;
-    }
-  }
-
-  .ordering__container {
-    display: flex;
-    justify-content: flex-end;
-    margin: 0 13px;
-  }
+input {
+  border: none;
+  border: 1px solid #dcdcdc;
+  height: 45px;
 }

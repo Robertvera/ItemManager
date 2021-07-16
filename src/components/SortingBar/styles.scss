@@ -1,0 +1,14 @@
+.sorting__container {
+  display: flex;
+  align-items: center;
+  margin: 13px;
+
+  label {
+    width: 20%;
+  }
+
+  .pills__container {
+    display: flex;
+    overflow-x: auto;
+  }
+}

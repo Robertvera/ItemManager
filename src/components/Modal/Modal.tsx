@@ -8,10 +8,12 @@ type ModalProps = {
     modalVisibility: string;
     setModalVisibility: React.Dispatch<React.SetStateAction<string>>;
     favorites: Array<Item>;
+    filteredFavs: Array<Item>;
     setFavorites: React.Dispatch<React.SetStateAction<Array<Item>>>;
+    setFavSearchString: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Modal = ({ modalVisibility='hidden', setModalVisibility, favorites, setFavorites }: ModalProps) => {
+const Modal = ({ modalVisibility='hidden', setModalVisibility, favorites, setFavorites, setFavSearchString, filteredFavs }: ModalProps) => {
     const handleModal = (event: React.MouseEvent<ReactElement>) => {
         event.preventDefault();
     
@@ -28,11 +30,11 @@ const Modal = ({ modalVisibility='hidden', setModalVisibility, favorites, setFav
                 <h1>FAV LIST</h1>
                 <Button onClick={handleModal} btnType='not-floating' color='secondary' shape='round' id='btn-close-modal'>X</Button>
             </div>
-            <div className='modal__search-bar'>
-                <SearchBar></SearchBar>
+            <div className='filter__container'>
+                <SearchBar setSearchString={setFavSearchString}/>
             </div>
             <div className='modal__item-list'>
-                { favorites && favorites.map((fav) => {
+                { filteredFavs && filteredFavs.map((fav) => {
                     const { title, image } = fav;
                     return (
                         <Item title={title} image={image} layout='pill' onClickFav={() => handleFav(fav)}/>

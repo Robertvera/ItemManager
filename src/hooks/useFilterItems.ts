@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { FILTER_CRITERIA } from '../constants';
 import sortItems from '../utils/sorting';
 
-const useFilter = (items: Array<Item>, searchString: string, sortBy: string, order:string) => {
+const useFilterItems = (items: Array<Item>, searchString: string, sortBy: string, order:string) => {
     const [filterResults, setFilterResults] = useState(items)
 
     useEffect(() => {
@@ -26,4 +26,4 @@ const useFilter = (items: Array<Item>, searchString: string, sortBy: string, ord
       return { filterResults }
 }
 
-export default useFilter;
+export default useFilterItems;

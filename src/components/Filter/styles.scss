@@ -1,0 +1,13 @@
+@use "../../assets/styles/base" as *;
+
+.filter__container {
+  display: flex;
+  flex-direction: column;
+  &:hover {
+    box-shadow: 1px 1px 8px 1px #dcdcdc;
+  }
+  &:focus-within {
+    box-shadow: 1px 1px 8px 1px #dcdcdc;
+    outline: none;
+  }
+}
