@@ -2,7 +2,7 @@
 import React from 'react';
 import './styles.scss';
 
-type ItemProps = Item & { onClickFav: (title: string) => void; }
+type ItemProps = Item & { onClickFav?: (title: string) => void; }
 
 const Item = ({ title, description, price, email, image, layout = 'full', fav = false, onClickFav = () => {} }: ItemProps) => {
     const isFullLayout = layout === 'full';

@@ -22,7 +22,7 @@ const SearchBar = ({ sortBy, setSearchString, setSortBy, setOrderBy }: SearchBar
     }
 
     return (
-            <div className='search-bar__container'>
+            <div className='filter__container'>
                 <input 
                     type='search'
                     placeholder='Type to search...'

@@ -4,7 +4,6 @@ import Home from './components/Home/Home';
 import Layout from './components/Layout/Layout'
 import useItems from './hooks/useItems';
 import useFilter from './hooks/useFilter';
-import useFavorites from './hooks/useFavorites';
 
 const App: React.FC<{}> = () => {
   const { isLoading, error, items } = useItems();

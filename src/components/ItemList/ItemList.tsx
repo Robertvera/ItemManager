@@ -18,17 +18,14 @@ const ItemList = ({ items, favorites, setFavorites }: ItemListProps) =>{
 
     const handleFav = (item: Item) => {
         if (isFav(item.title)) {
-            const favTitles = favorites.map((_fav) => _fav.title);
-            setFavorites(favorites.filter((fav) => !favTitles.includes(fav.title)));
+            setFavorites(favorites.filter((fav) => fav.title !== item.title));
         } else {
-            favorites.push(item);
-            setFavorites(favorites);
+            setFavorites(prevFavs => ([ ...prevFavs, ...[item] ]));
         }
     }
 
      return (
         <div className='flex-container'>
-            {            console.log('fav renderisat')}
            {
                items && items.map((item) => {
                     const { title, description, price, email, image } = item;

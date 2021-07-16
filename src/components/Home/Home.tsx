@@ -19,7 +19,7 @@ const Home = ({ items, sortBy, setSearchString, setSortBy, setOrderBy, setModalV
     <>
         <SearchBar setSearchString={setSearchString} sortBy={sortBy} setSortBy={setSortBy} setOrderBy={setOrderBy}/>
         <ItemList items={items} favorites={favorites} setFavorites={setFavorites}/>
-        <Modal modalVisibility={modalVisibility} setModalVisibility={setModalVisibility}/>
+        <Modal modalVisibility={modalVisibility} setModalVisibility={setModalVisibility} favorites={favorites} setFavorites={setFavorites}/>
     </>
 );
 
