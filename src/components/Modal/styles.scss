@@ -7,19 +7,31 @@
   flex-direction: column;
   overflow-y: scroll;
   height: 100%;
-  z-index: 1;
+  // margin: 150px auto 0;
+  -webkit-transition: opacity 0.5s ease-out, bottom 0.5s ease-out;
+  -moz-transition: opacity 0.5s ease-out, bottom 0.5s ease-out;
+  -o-transition: opacity 0.5s ease-out, bottom 0.5s ease-out;
+  transition: opacity 0.5s ease-out, bottom 0.5s ease-out;
+
   &--hidden {
-    display: none;
+    z-index: 0;
+    opacity: 0;
+    bottom: -110vh;
   }
   &--visible {
     display: flex;
+
+    bottom: 0;
+    opacity: 1;
+    z-index: 0;
   }
   #modal__wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100vh;
+    background: $white;
     @media (min-width: 481px) {
-      margin: 13px 54px;
       align-items: center;
     }
 
