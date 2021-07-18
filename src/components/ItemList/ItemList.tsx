@@ -10,7 +10,6 @@ type ItemListProps = {
 }
 
 const ItemList = ({ items, favorites, setFavorites, loader }: ItemListProps) =>{
-    let key = 0
     const isFav = (title: string) => {
         const favTitles = favorites.map((fav) => fav.title);
 
@@ -26,24 +25,26 @@ const ItemList = ({ items, favorites, setFavorites, loader }: ItemListProps) =>{
     }
 
      return (
-        <div className='flex-container'>
-           {
-               items && items.map((item) => {
-                    const { title, description, price, email, image } = item;
-                    return <Item
-                            key={key++}
-                            title={title}
-                            description={description}
-                            price={price}
-                            email={email}
-                            image={image}
-                            fav={isFav(title)}
-                            onClickFav={() => handleFav(item)}
-                        />
-               })
-           }
-           <div ref={loader} />
-        </div>
+         <>
+            <div className='item-container'>
+            {
+                items && items.map((item) => {
+                        const { title, description, price, email, image } = item;
+                        return <Item
+                                key={title}
+                                title={title}
+                                description={description}
+                                price={price}
+                                email={email}
+                                image={image}
+                                fav={isFav(title)}
+                                onClickFav={() => handleFav(item)}
+                            />
+                })
+            }
+            <div id='loader' ref={loader}/>
+            </div>
+        </>
     )
 }
  

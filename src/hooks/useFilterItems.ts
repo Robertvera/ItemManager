@@ -1,13 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FILTER_CRITERIA } from '../constants';
 import sortItems from '../utils/sorting';
 
-const useFilterItems = (items: Array<Item>, searchString: string, sortBy: string, order:string, page:number) => {
+const useFilterItems = (items: Array<Item>, searchString: string, sortBy: string, order:string, setPage:React.Dispatch<React.SetStateAction<number>>) => {
     const [filterResults, setFilterResults] = useState(items)
 
-    const previousPageValue = useRef(page);
-
     useEffect(() => {
+        setPage(1);
         const results = items?.filter((item: Item) => {
         const itemCriteriaDetails:Array<string> = [];
     
@@ -21,26 +20,9 @@ const useFilterItems = (items: Array<Item>, searchString: string, sortBy: string
         if (results) {
             sortItems(results, order, sortBy);
 
-            if (results.length > 5 && page === 1) {
-              setFilterResults(results.slice(0, 5));
-            } else {
-              setFilterResults(results);
-            }
+            setFilterResults(results);
         }
-
-        if (results && previousPageValue.current !== page) {
-          const ref = filterResults && filterResults.length;
-          setFilterResults((prevResults) => [...prevResults, ...results.slice(ref, ref+5) ])
-        }
-      }, [items, searchString, sortBy, order, page])
-
-      // useEffect(() => {
-      //   if (filterResults) {
-      //     const ref = filterResults.length;
-  
-      //     setFilterResults((prevResults) => [...prevResults, ...items.slice(ref, ref+5) ])
-      //   }
-      // }, [page])
+      }, [items, searchString, sortBy, order])
 
       return { filterResults }
 }

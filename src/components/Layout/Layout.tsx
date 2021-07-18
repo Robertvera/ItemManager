@@ -6,9 +6,10 @@ import Button from '../Button/Button';
 type LayoutProps = {
     children: ReactChild;
     setModalVisibility?: React.Dispatch<React.SetStateAction<string>>;
+    loader?: RefObject<() => void>;
 }
 
-const Layout = ({ children, setModalVisibility = () => {} }: LayoutProps) =>{
+const Layout = ({ children, setModalVisibility = () => {}, loader }: LayoutProps) =>{
     const handleModal = (event: React.MouseEvent<ReactElement>) => {
         event.preventDefault();
     
@@ -18,7 +19,7 @@ const Layout = ({ children, setModalVisibility = () => {} }: LayoutProps) =>{
     return (
         <div className='content'>
             <Header />
-            {children}
+                {children}
             <Button onClick={handleModal} btnType='floating' shape='round' id='btn-favList'>🥰</Button>
         </div>
     );

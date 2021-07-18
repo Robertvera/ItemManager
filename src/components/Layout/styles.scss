@@ -2,4 +2,14 @@
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+
+  .home__container {
+    display: flex;
+    flex-direction: column;
+    @media (min-width: 481px) {
+      margin: 13px 54px;
+      align-items: center;
+    }
+  }
 }

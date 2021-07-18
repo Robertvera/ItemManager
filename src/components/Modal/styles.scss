@@ -14,19 +14,48 @@
   &--visible {
     display: flex;
   }
+  #modal__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @media (min-width: 481px) {
+      margin: 13px 54px;
+      align-items: center;
+    }
+
+    .modal__item-container {
+      overflow-y: scroll;
+      display: flex;
+    }
+  }
+
   .modal__header {
+    width: 100%;
+    height: 50px;
+    background-color: $secondary;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin: 13px;
+    justify-content: center;
+
+    @media (min-width: 481px) {
+      height: 80px;
+    }
+
+    h1 {
+      font-family: $title_font;
+      font-size: 1.5em;
+      @media (min-width: 481px) {
+        font-size: 2em;
+      }
+    }
 
     #btn-close-modal {
       font-size: 0.5em;
       width: 30px;
       height: 30px;
+      position: absolute;
+      right: 1em;
+      top: 1em;
     }
-  }
-  .modal__item-list {
-    overflow-y: scroll;
   }
 }

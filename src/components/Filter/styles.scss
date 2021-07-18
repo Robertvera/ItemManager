@@ -3,11 +3,16 @@
 .filter__container {
   display: flex;
   flex-direction: column;
+  width: 100%;
   &:hover {
     box-shadow: 1px 1px 8px 1px #dcdcdc;
   }
   &:focus-within {
     box-shadow: 1px 1px 8px 1px #dcdcdc;
     outline: none;
+  }
+
+  @media (min-width: 900px) {
+    width: 820px;
   }
 }

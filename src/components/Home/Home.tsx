@@ -1,6 +1,6 @@
 import React, { RefObject } from 'react';
 import ItemList from '../ItemList/ItemList';
-import Filter from '../Filter/Filter'
+import Filter from '../Filter/Filter';
 import Modal from '../Modal/Modal';
 
 type HomeProps = {
@@ -20,8 +20,10 @@ type HomeProps = {
 
 const Home = ({ items, sortBy, setSearchString, setFavSearchString, setSortBy, setOrderBy, setModalVisibility, modalVisibility, favorites, setFavorites, filteredFavs, loader }: HomeProps) => (
     <>
-        <Filter setSearchString={setSearchString} sortBy={sortBy} setSortBy={setSortBy} setOrderBy={setOrderBy}/>
-        <ItemList items={items} favorites={favorites} setFavorites={setFavorites} loader={loader}/>
+        <main className='home__container'>
+            <Filter setSearchString={setSearchString} sortBy={sortBy} setSortBy={setSortBy} setOrderBy={setOrderBy}/>
+            <ItemList items={items} favorites={favorites} setFavorites={setFavorites} loader={loader}/>
+        </main>
         <Modal modalVisibility={modalVisibility} setModalVisibility={setModalVisibility} favorites={favorites} setFavorites={setFavorites} setFavSearchString={setFavSearchString} filteredFavs={filteredFavs}/>
     </>
 );

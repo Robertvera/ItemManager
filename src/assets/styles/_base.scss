@@ -29,6 +29,9 @@ $small: 20px;
 $medium: 60px;
 $big: 170px;
 
+//FONTS
+$title_font: 'Pacifico', cursive;
+
 //BUTTON MIXINS
 @mixin button-bg($bg) {
   background: $bg;
