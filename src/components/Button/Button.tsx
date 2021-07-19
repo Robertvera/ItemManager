@@ -1,9 +1,9 @@
-import React, { ReactChild, ReactElement } from 'react';
+import React, { ReactChild } from 'react';
 import './styles.scss';
 
 type ButtonsProps = {
     children: ReactChild;
-    onClick?: (ev: React.MouseEvent<ReactElement>) => void;
+    onClick?: (ev: React.MouseEvent<HTMLElement>) => void;
     color?: ColorVariants;
     btnType?: ButtonTypeVariants;
     shape?: ShapeVariants;
@@ -25,7 +25,7 @@ const Button = ({children, onClick = () => {}, color = 'primary', btnType = 'not
     const className = `btn ${btnModifiers(modifiers)}`;
 
     return (
-        <button type='button' onClick={onClick} className={className} id={id}>
+        <button aria-label='button' type='button' onClick={onClick} className={className} id={id}>
             <span>{children}</span>
         </button>
     );
