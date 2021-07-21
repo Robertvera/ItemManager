@@ -1,20 +1,16 @@
-import React, { RefObject } from 'react';
+import React from 'react';
 import ItemList from '../ItemList/ItemList';
 import Filter from '../Filter/Filter';
 import Modal from '../Modal/Modal';
+import ItemContext from '../../storage/items';
 
-type HomeProps = {
-    items: Array<Item>;
-    loader?: RefObject<HTMLDivElement>;
-}
-
-const Home = ({ items, loader }: HomeProps) => (
+const Home = () => (
     <>
         <main className='home__container'>
             <Filter />
-            <ItemList
-            items={items}
-            loader={loader}/>
+            <ItemContext>
+                <ItemList />
+            </ItemContext>
         </main>
         <Modal />
     </>

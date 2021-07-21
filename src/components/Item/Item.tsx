@@ -1,9 +1,10 @@
+/* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import './styles.scss';
 import LazyImage from '../LazyImage/LazyImage';
 
-type ItemProps = Item & { onClickFav?: (title: string) => void; }
+type ItemProps = Item & { onClickFav?: (event: MouseEvent<HTMLElement>) => void; }
 
 const Item = ({ title, description, price, email, image, layout = 'full', fav = false, onClickFav = () => {} }: ItemProps) => {
     const isFullLayout = layout === 'full';

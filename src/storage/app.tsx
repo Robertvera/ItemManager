@@ -1,5 +1,4 @@
-import React, { useState, ReactChild, createContext, ChangeEvent, MouseEvent } from 'react';
-import useItems from '../hooks/useItems';
+import React, { useState, ReactChild, createContext, ChangeEvent, MouseEvent, useRef } from 'react';
 import useFavs from '../hooks/useFavs';
 import { AppContextState } from '../types';
 
@@ -7,6 +6,7 @@ const contextDefaultValues: AppContextState = {
     searchString: '',
     updateSearchString: () => {},
     sortBy: 'Title',
+    orderBy: 'ascending',
     updateSortBy: () => {},
     updateOrderBy: () => {},
     buttonAction: () => {},
@@ -23,8 +23,6 @@ type AppContextProps = {
 }
 
 const AppContext = ({ children }:AppContextProps) => {
-    const { items } = useItems();
-
     const [ searchString, setSearchString ] = useState('');
     const [ sortBy, setSortBy ] = useState('Title');
     const [ favSearchString, setFavSearchString ] = useState('');
@@ -78,6 +76,7 @@ const AppContext = ({ children }:AppContextProps) => {
             searchString,
             updateSearchString,
             sortBy,
+            orderBy,
             updateSortBy,
             updateOrderBy,
             buttonAction,

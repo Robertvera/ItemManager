@@ -1,22 +1,19 @@
-import React, { RefObject, useContext } from 'react';
+import React, {  useContext } from 'react';
 import './styles.scss';
 import isFav from '../../utils/favorites';
 import Item from '../Item/Item';
-import { Context } from '../../storage';
+import { Context as AppContext } from '../../storage/app';
+import { Context as ItemContext } from '../../storage/items';
 
-type ItemListProps = {
-    items: Array<any>;
-    loader?: RefObject<HTMLDivElement>;
-}
-
-const ItemList = ({ items, loader }: ItemListProps) =>{
-    const { favorites, updateFavorites } = useContext(Context);
+const ItemList = () =>{
+    const { favorites, updateFavorites } = useContext(AppContext);
+    const { paginatedItems, loader } = useContext(ItemContext);
 
     return (
         <>
             <div className='item-container'>
             {
-                items && items.map((item) => {
+                paginatedItems && paginatedItems.map((item) => {
                         const { title, description, price, email, image } = item;
                         return <Item
                                 key={title}

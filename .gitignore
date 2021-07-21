@@ -46,4 +46,3 @@ Temporary Items
 node_modules
 .parcel-cache
 dist
-package-lock.json

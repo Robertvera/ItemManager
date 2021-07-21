@@ -4,7 +4,7 @@ import Item from '../Item/Item';
 import Button from '../Button/Button';
 import SearchBar from '../SearchBar/SearchBar';
 import NoResults from '../NoResults/NoResults';
-import { Context } from '../../storage';
+import { Context } from '../../storage/app';
 
 const Modal = () => {
 

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import './styles.scss';
-import { Context } from '../../storage';
+import { Context } from '../../storage/app';
 
 type SearchBarProps = {
     type?: SearchBarVariants

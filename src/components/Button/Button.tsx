@@ -1,5 +1,5 @@
 import React, { ReactChild, useContext } from 'react';
-import { Context } from '../../storage';
+import { Context } from '../../storage/app';
 import './styles.scss';
 
 type ButtonsProps = {

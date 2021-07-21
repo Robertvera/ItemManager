@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { ReactChild, useContext } from 'react';
 import './styles.scss';
-import { Context } from '../../storage';
+import { Context } from '../../storage/app';
 
 type SortingProps = {
     children: ReactChild;
