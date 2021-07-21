@@ -1,28 +1,18 @@
-import React, { ReactChild, ReactElement } from 'react';
+import React, { ReactChild } from 'react';
 import './styles.scss';
 import Header from '../Header/Header';
 import Button from '../Button/Button';
 
 type LayoutProps = {
     children: ReactChild;
-    setModalVisibility?: React.Dispatch<React.SetStateAction<string>>;
-    loader?: RefObject<() => void>;
 }
 
-const Layout = ({ children, setModalVisibility = () => {}, loader }: LayoutProps) =>{
-    const handleModal = (event: React.MouseEvent<ReactElement>) => {
-        event.preventDefault();
-    
-        setModalVisibility('visible');
-    }
-
-    return (
+const Layout = ({ children }: LayoutProps) =>(
         <div className='content'>
             <Header />
                 {children}
-            <Button onClick={handleModal} btnType='floating' shape='round' id='btn-favList'>🥰</Button>
+            <Button action='show-modal' btnType='floating' shape='round' id='btn-favList'>🥰</Button>
         </div>
-    );
-} 
+    ) 
 
 export default Layout;

@@ -1,31 +1,19 @@
-import React, { RefObject } from 'react';
+import React, { RefObject, useContext } from 'react';
 import './styles.scss';
+import isFav from '../../utils/favorites';
 import Item from '../Item/Item';
+import { Context } from '../../storage';
 
 type ItemListProps = {
     items: Array<any>;
-    favorites: Array<Item>;
-    setFavorites: React.Dispatch<React.SetStateAction<Array<Item>>>;
     loader?: RefObject<HTMLDivElement>;
 }
 
-const ItemList = ({ items, favorites, setFavorites, loader }: ItemListProps) =>{
-    const isFav = (title: string) => {
-        const favTitles = favorites.map((fav) => fav.title);
+const ItemList = ({ items, loader }: ItemListProps) =>{
+    const { favorites, updateFavorites } = useContext(Context);
 
-        return favTitles.includes(title)
-    }
-
-    const handleFav = (item: Item) => {
-        if (isFav(item.title)) {
-            setFavorites(favorites.filter((fav) => fav.title !== item.title));
-        } else {
-            setFavorites(prevFavs => ([ ...prevFavs, ...[item] ]));
-        }
-    }
-
-     return (
-         <>
+    return (
+        <>
             <div className='item-container'>
             {
                 items && items.map((item) => {
@@ -37,8 +25,8 @@ const ItemList = ({ items, favorites, setFavorites, loader }: ItemListProps) =>{
                                 price={price}
                                 email={email}
                                 image={image}
-                                fav={isFav(title)}
-                                onClickFav={() => handleFav(item)}
+                                fav={isFav(title, favorites)}
+                                onClickFav={() => updateFavorites(item)}
                             />
                 })
             }

@@ -6,20 +6,13 @@ import Spinner from './components/Spinner/Spinner';
 import Layout from './components/Layout/Layout'
 import useItems from './hooks/useItems';
 import useFilterItems from './hooks/useFilterItems';
-import useFilterFavs from './hooks/useFilterFavs';
 import usePagination from './hooks/usePagination';
+import AppContext from './storage';
 
 const App: React.FC<{}> = () => {
   const { isLoading, error, items } = useItems();
   const [page, setPage] = useState(1);
-  const [ searchString, setSearchString ] = useState('');
-  const [ favSearchString, setFavSearchString ] = useState('');
-  const [ sortBy, setSortBy ] = useState('Title');
-  const [ orderBy, setOrderBy ] = useState('ascending');
-  const [ modalVisibility, setModalVisibility ] = useState('hidden');
-  const [ favorites, setFavorites ] = useState<Item[]>([]);
-  const { filterResults } = useFilterItems(items?.items, searchString, sortBy, orderBy, setPage);
-  const { filterFavsResults } = useFilterFavs(favorites, favSearchString);
+  const { filterResults } = useFilterItems(items?.items, '', 'Title', 'ascending', setPage);
   const { paginatedResults } = usePagination(filterResults, page);
   const loader = useRef<HTMLDivElement>(null);
 
@@ -49,26 +42,18 @@ const App: React.FC<{}> = () => {
   }
 
   return (
-    <Layout loader={loader} setModalVisibility={setModalVisibility}>
-      {isLoading ?
-      <Spinner/>
-      :
-      <Home
-        items={paginatedResults}
-        setSearchString={setSearchString}
-        setFavSearchString={setFavSearchString}
-        sortBy={sortBy}
-        setSortBy={setSortBy}
-        setOrderBy={setOrderBy}
-        setModalVisibility={setModalVisibility}
-        modalVisibility={modalVisibility}
-        favorites={favorites}
-        setFavorites={setFavorites}
-        filteredFavs={filterFavsResults}
-        loader={loader}
-      />
-      }
-    </Layout>
+    <AppContext>
+      <Layout >
+        {isLoading ?
+        <Spinner/>
+        :
+        <Home
+          items={paginatedResults}
+          loader={loader}
+        />
+        }
+      </Layout>
+    </AppContext>
   )
 } 
 
