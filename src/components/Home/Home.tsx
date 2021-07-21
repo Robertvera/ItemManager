@@ -15,16 +15,30 @@ type HomeProps = {
     favorites: Array<Item>;
     setFavorites: React.Dispatch<React.SetStateAction<Item[]>>;
     filteredFavs: Array<Item>;
-    loader: RefObject<() => void>;
+    loader?: RefObject<HTMLDivElement>;
 }
 
 const Home = ({ items, sortBy, setSearchString, setFavSearchString, setSortBy, setOrderBy, setModalVisibility, modalVisibility, favorites, setFavorites, filteredFavs, loader }: HomeProps) => (
     <>
         <main className='home__container'>
-            <Filter setSearchString={setSearchString} sortBy={sortBy} setSortBy={setSortBy} setOrderBy={setOrderBy}/>
-            <ItemList items={items} favorites={favorites} setFavorites={setFavorites} loader={loader}/>
+            <Filter 
+            setSearchString={setSearchString} 
+            sortBy={sortBy} 
+            setSortBy={setSortBy} 
+            setOrderBy={setOrderBy}/>
+            <ItemList
+            items={items}
+            favorites={favorites}
+            setFavorites={setFavorites}
+            loader={loader}/>
         </main>
-        <Modal modalVisibility={modalVisibility} setModalVisibility={setModalVisibility} favorites={favorites} setFavorites={setFavorites} setFavSearchString={setFavSearchString} filteredFavs={filteredFavs}/>
+        <Modal 
+        modalVisibility={modalVisibility} 
+        setModalVisibility={setModalVisibility} 
+        favorites={favorites} 
+        setFavorites={setFavorites} 
+        setFavSearchString={setFavSearchString} 
+        filteredFavs={filteredFavs}/>
     </>
 );
 

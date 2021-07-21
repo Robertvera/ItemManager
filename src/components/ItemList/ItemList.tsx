@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { RefObject } from 'react';
 import './styles.scss';
 import Item from '../Item/Item';
 
@@ -6,7 +6,7 @@ type ItemListProps = {
     items: Array<any>;
     favorites: Array<Item>;
     setFavorites: React.Dispatch<React.SetStateAction<Array<Item>>>;
-    loader: RefObject<() => void>;
+    loader?: RefObject<HTMLDivElement>;
 }
 
 const ItemList = ({ items, favorites, setFavorites, loader }: ItemListProps) =>{

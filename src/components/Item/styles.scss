@@ -8,10 +8,23 @@
   &--full {
     width: 345px;
     height: 620px;
+
+    .item-header {
+      flex-direction: column;
+    }
   }
   &--pill {
     width: 345px;
     height: 450px;
+
+    .item-header {
+      flex-direction: row;
+      justify-content: space-between;
+
+      .item-fav {
+        margin: 2px;
+      }
+    }
   }
   img {
     border-radius: 5px;
@@ -27,7 +40,6 @@
   .item-header {
     display: flex;
     margin-left: 5px;
-    flex-direction: column;
     margin: 0px;
     .item-fav {
       font-size: 2em;

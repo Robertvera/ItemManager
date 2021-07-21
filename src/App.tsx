@@ -21,7 +21,7 @@ const App: React.FC<{}> = () => {
   const { filterResults } = useFilterItems(items?.items, searchString, sortBy, orderBy, setPage);
   const { filterFavsResults } = useFilterFavs(favorites, favSearchString);
   const { paginatedResults } = usePagination(filterResults, page);
-  const loader = useRef<() => void>(null);
+  const loader = useRef<HTMLDivElement>(null);
 
   const handleObserver = useCallback((entries) => {
     const target = entries[0];

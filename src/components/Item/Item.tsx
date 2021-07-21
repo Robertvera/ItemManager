@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import './styles.scss';
+import LazyImage from '../LazyImage/LazyImage';
 
 type ItemProps = Item & { onClickFav?: (title: string) => void; }
 
@@ -9,7 +10,7 @@ const Item = ({ title, description, price, email, image, layout = 'full', fav = 
 
     return (
         <div className={`grid-item grid-item--${layout}`}>
-            <img src={image} alt='random' />
+            <LazyImage src={image} alt={title} />
             <div className='item-body'>
                 <div className='item-header'>
                     <h1>{title}</h1>
