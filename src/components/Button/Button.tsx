@@ -1,9 +1,10 @@
-import React, { ReactChild } from 'react';
+import React, { ReactChild, useContext } from 'react';
+import { Context } from '../../storage/app';
 import './styles.scss';
 
 type ButtonsProps = {
     children: ReactChild;
-    onClick?: (ev: React.MouseEvent<HTMLElement>) => void;
+    action?: ActionButtonVariants;
     color?: ColorVariants;
     btnType?: ButtonTypeVariants;
     shape?: ShapeVariants;
@@ -20,12 +21,14 @@ const btnModifiers = (modifiers: Array<string>) => {
     return classNames.join(' ');
 }
 
-const Button = ({children, onClick = () => {}, color = 'primary', btnType = 'not-floating', shape = 'rectangle', id = ''} : ButtonsProps) => {
+const Button = ({children, action, color = 'primary', btnType = 'not-floating', shape = 'rectangle', id = ''} : ButtonsProps) => {
     const modifiers = [color, btnType, shape]
     const className = `btn ${btnModifiers(modifiers)}`;
 
+    const { buttonAction } = useContext(Context);
+
     return (
-        <button aria-label='button' type='button' onClick={onClick} className={className} id={id}>
+        <button aria-label='button' type='button' onClick={(e) => { buttonAction(e, action) } } className={className} id={id}>
             <span>{children}</span>
         </button>
     );

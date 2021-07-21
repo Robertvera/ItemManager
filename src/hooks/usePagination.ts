@@ -1,24 +1,24 @@
 import { useEffect, useRef, useState } from 'react';
 
 const usePagination = (filteredItems: Array<Item>, page:number) => {
-    const [paginatedResults, setPaginatedResults] = useState(filteredItems)
+    const [paginatedItems, setpaginatedItems] = useState(filteredItems)
 
     const previousPageValue = useRef(page);
 
     useEffect(() => {
         if (filteredItems) {
             if (previousPageValue.current !== page) {
-                const ref = paginatedResults && paginatedResults.length;
+                const ref = paginatedItems && paginatedItems.length;
     
-                setPaginatedResults((prevResults) => [...prevResults, ...filteredItems.slice(ref, ref+5) ])
+                setpaginatedItems((prevResults) => [...prevResults, ...filteredItems.slice(ref, ref+5) ])
             } else {
-                setPaginatedResults(filteredItems.slice(0, 5));
+                setpaginatedItems(filteredItems.slice(0, 5));
             }
         }
 
       }, [filteredItems, page])
 
-      return { paginatedResults }
+      return { paginatedItems }
 }
 
 export default usePagination;

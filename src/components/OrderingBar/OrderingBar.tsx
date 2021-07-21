@@ -1,21 +1,17 @@
-import React, { MouseEvent } from 'react';
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React, { useContext } from 'react';
+import { Context } from '../../storage/app';
 import './styles.scss';
 
-type OrderingBarProps = {
-    setOrderBy: React.Dispatch<React.SetStateAction<string>>;
-}
+const OrderingBar = () => {
 
-const OrderingBar = ({ setOrderBy }: OrderingBarProps) => {
-
-    const handleClick = (e: MouseEvent<HTMLElement>) => {
-        e.preventDefault();
-        setOrderBy(e.target?.dataset.order)
-    }
+    const { updateOrderBy } = useContext(Context);
 
     return (
         <div className='ordering__container'>
-            <span data-order='ascending' onClick={handleClick}>🔺</span>
-            <span data-order='descending' onClick={handleClick}>🔻</span>
+            <span data-order='ascending' onClick={updateOrderBy}>🔺</span>
+            <span data-order='descending' onClick={updateOrderBy}>🔻</span>
         </div>
     );
 }

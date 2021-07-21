@@ -1,15 +1,14 @@
-import React, { ChangeEvent } from 'react';
+import React, { useContext } from 'react';
 import './styles.scss';
+import { Context } from '../../storage/app';
 
 type SearchBarProps = {
-    setSearchString: React.Dispatch<React.SetStateAction<string>>;
+    type?: SearchBarVariants
 }
 
-const SearchBar = ({ setSearchString }: SearchBarProps) => {
-    const handleChange = (e:ChangeEvent<HTMLInputElement>) => {
-        e.preventDefault();
-        setSearchString(e.target.value);
-    }
+
+const SearchBar = ({ type = 'home' }: SearchBarProps) => {
+    const { updateSearchString } = useContext(Context);
 
     return (
         <input 
@@ -17,7 +16,7 @@ const SearchBar = ({ setSearchString }: SearchBarProps) => {
             placeholder='Type to search...'
             inputMode='search'
             name='search'
-            onChange={handleChange}
+            onChange={(e) => updateSearchString(e, type)}
         />
     );
 }
