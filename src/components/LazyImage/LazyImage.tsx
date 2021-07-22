@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, SyntheticEvent } from 'react'
 
 const placeHolder = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFElEQVQIW2MMDQ39z8DAwMAIYwAAKgMD/9AXrvgAAAAASUVORK5CYII='
 
@@ -11,13 +11,15 @@ const LazyImage = ({ src, alt }: LazyImageProps) => {
     const [imageSrc, setImageSrc] = useState(placeHolder)
     const [imageRef, setImageRef] = useState()
 
-    const onLoad = event => {
-        event.target.classList.add('loaded')
+    const onLoad = (event:SyntheticEvent<HTMLElement>) => {
+        const target = event.target as HTMLElement
+        target.classList.add('loaded')
     }
 
     useEffect(() => {
-        let observer
-        let didCancel = false
+        // @ts-expect-error
+        let observer;
+        let didCancel = false;
 
         if (imageRef && imageSrc !== src) {
             if (IntersectionObserver) {
@@ -29,6 +31,7 @@ const LazyImage = ({ src, alt }: LazyImageProps) => {
                             (entry.intersectionRatio > 0 || entry.isIntersecting)
                             ) {
                                 setImageSrc(src)
+                                // @ts-expect-error
                                 observer.unobserve(imageRef)
                             }
                         })
@@ -38,6 +41,7 @@ const LazyImage = ({ src, alt }: LazyImageProps) => {
                         rootMargin: '75%',
                     }
                 )
+                // @ts-expect-error
                 observer.observe(imageRef)
                 } else {
                     setImageSrc(src)
@@ -45,7 +49,9 @@ const LazyImage = ({ src, alt }: LazyImageProps) => {
         }
         return () => {
             didCancel = true
+            // @ts-expect-error
             if (observer && observer.unobserve) {
+                // @ts-expect-error
                 observer.unobserve(imageRef)
             }
         }
@@ -53,6 +59,7 @@ const LazyImage = ({ src, alt }: LazyImageProps) => {
   
     return (
         <img
+        // @ts-expect-error
         ref={setImageRef}
         src={imageSrc}
         alt={alt}

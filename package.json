@@ -23,7 +23,8 @@
       "<rootDir>/src/setupTests.ts"
     ],
     "moduleNameMapper": {
-      ".+\\.scss$": "<rootDir>/src/styleMock.ts"
+      ".+\\.scss$": "<rootDir>/src/styleMock.ts",
+      "^.+\\.svg$": "<rootDir>/src/svgMock.ts"
     }
   },
   "keywords": [],
@@ -39,6 +40,7 @@
     "@babel/preset-typescript": "^7.14.5",
     "@parcel/transformer-sass": "^2.0.0-beta.2",
     "@parcel/transformer-svg-react": "^2.0.0-nightly.1739",
+    "@testing-library/dom": "^8.1.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@types/jest": "^26.0.24",

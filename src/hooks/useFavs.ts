@@ -1,7 +1,7 @@
 import {  useEffect, useState } from 'react';
 import isFav from '../utils/favorites';
 
-const useFavs = (favs: Array<Item>, searchString: string) => {
+const useFavs = (searchString: string) => {
     const [ favorites, setFavorites ] = useState<Item[]>([]);
     const [filterFavsResults, setFilterFavsResults] = useState<Item[]>(favorites)
 

@@ -10,5 +10,4 @@ declare type Item = {
     email?: string;
     image: string;
     layout?: string;
-    fav?: boolean;
 }

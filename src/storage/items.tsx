@@ -1,7 +1,8 @@
-import React, { useState, ReactChild, createContext, useContext, useEffect, useRef, useCallback } from 'react';
+import React, { useState, ReactChild, createContext, useContext, useEffect, useRef } from 'react';
 import useFilterItems from '../hooks/useFilterItems';
 import usePagination from '../hooks/usePagination';
 import useItems from '../hooks/useItems';
+import useIntersectionObserver from '../hooks/useIntersectionObserver';
 import { Context as AppContext} from "./app";
 import { ItemContextState } from '../types';
 
@@ -19,27 +20,19 @@ type ItemContextProps = {
 const ItemContext = ({ children }:ItemContextProps) => {
     const { searchString, sortBy, orderBy } = useContext(AppContext);
     const { items, isLoading } = useItems();
-    const [page, setPage] = useState(1);
+    const [ page, setPage ] = useState(1);
     const { filterResults } = useFilterItems(items?.items, searchString, sortBy, orderBy, setPage);
     const { paginatedItems } = usePagination(filterResults, page);
     const loader = useRef<HTMLDivElement>(null);
-
-    const handleObserver = useCallback((entries) => {
-        const target = entries[0];
-        if (target.isIntersecting) {
-            setPage((prev) => prev + 1);
-        }
-    }, []);
+    const { observe, isIntersecting } = useIntersectionObserver();
 
     useEffect(() => {
-        const option = {
-        root: null,
-        rootMargin: "20px",
-        threshold: 0
-        };
-        const observer = new IntersectionObserver(handleObserver, option);
-        if (loader.current) observer.observe(loader.current);
-    }, [handleObserver, isLoading]);
+        if (isIntersecting) setPage((prev) => prev + 1);
+    }, [isIntersecting])
+
+    useEffect(() => {
+        observe(loader.current);
+    }, [isLoading])
 
     return (
         <Context.Provider 

@@ -1,4 +1,4 @@
-import React, { useState, ReactChild, createContext, ChangeEvent, MouseEvent, useRef } from 'react';
+import React, { useState, ReactChild, createContext, ChangeEvent, MouseEvent } from 'react';
 import useFavs from '../hooks/useFavs';
 import { AppContextState } from '../types';
 
@@ -28,7 +28,7 @@ const AppContext = ({ children }:AppContextProps) => {
     const [ favSearchString, setFavSearchString ] = useState('');
     const [ orderBy, setOrderBy ] = useState('ascending');
     const [ modalVisibility, setModalVisibility ] = useState('hidden');
-    const { filterFavsResults, favorites, updateFavorites } = useFavs([], favSearchString);
+    const { filterFavsResults, favorites, updateFavorites } = useFavs(favSearchString);
 
     const updateSearchString = (event:ChangeEvent<HTMLInputElement>, type: string) => {
         event.preventDefault();
@@ -47,12 +47,15 @@ const AppContext = ({ children }:AppContextProps) => {
 
     const updateSortBy = (event:MouseEvent<HTMLElement>) => {
         event.preventDefault();
-        setSortBy(event.target?.firstChild?.textContent)
+        const target = event.target as HTMLElement;
+        setSortBy(target.firstChild!.textContent || 'Title');
+
     }
 
     const updateOrderBy = (event:MouseEvent<HTMLElement>) => {
         event.preventDefault();
-        setOrderBy(event.target?.dataset.order)
+        const target = event.target as HTMLElement;
+        setOrderBy(target.dataset.order || 'ascending');
     }
 
     const buttonAction = (event:MouseEvent<HTMLElement>, action: string|undefined) => {

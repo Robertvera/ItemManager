@@ -11,6 +11,7 @@ const useFilterItems = (items: Array<Item>, searchString: string, sortBy: string
         const itemCriteriaDetails:Array<string> = [];
     
           FILTER_CRITERIA.forEach((criteria) => {
+            // @ts-expect-error
             itemCriteriaDetails.push(item[criteria].toLowerCase());
           });
     

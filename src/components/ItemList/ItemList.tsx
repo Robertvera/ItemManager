@@ -11,7 +11,7 @@ const ItemList = () =>{
 
     return (
         <>
-            <div className='item-container'>
+            <div data-testid='item-container' className='item-container'>
             {
                 paginatedItems && paginatedItems.map((item) => {
                         const { title, description, price, email, image } = item;
