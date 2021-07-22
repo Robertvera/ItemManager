@@ -13,6 +13,7 @@ const SearchBar = ({ type = 'home' }: SearchBarProps) => {
     return (
         <input 
             type='search'
+            aria-label={`search-${type}`}
             placeholder='Type to search...'
             inputMode='search'
             name='search'

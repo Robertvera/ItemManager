@@ -17,7 +17,7 @@ type ItemContextProps = {
     children: ReactChild;
 }
 
-const ItemContext = ({ children }:ItemContextProps) => {
+const ItemContext = ({ children }:ItemContextProps) =>{
     const { searchString, sortBy, orderBy } = useContext(AppContext);
     const { items, isLoading } = useItems();
     const [ page, setPage ] = useState(1);
