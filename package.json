@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel src/index.html --open",
+    "build": "parcel build src/index.tsx",
+    "test:e2e": "jest src/App.test.tsx",
     "test": "jest"
   },
   "repository": {
