@@ -7,7 +7,7 @@
   flex-direction: column;
   &--full {
     width: 345px;
-    height: 620px;
+    height: 100%;
 
     .item-header {
       flex-direction: column;
@@ -15,7 +15,7 @@
   }
   &--pill {
     width: 345px;
-    height: 450px;
+    height: 100%;
 
     .item-header {
       flex-direction: row;
@@ -35,6 +35,7 @@
   .item-body {
     border-radius: 5px;
     margin-left: 5px;
+    margin-bottom: 10px;
   }
 
   .item-header {
@@ -46,7 +47,34 @@
     }
   }
 
+  .item-email {
+    font-weight: bold;
+  }
+
   @media (min-width: 481px) {
     flex-basis: 19%;
+
+    &--full {
+      width: 345px;
+      max-width: 345px;
+      height: 680px;
+
+      .item-header {
+        flex-direction: column;
+      }
+    }
+    &--pill {
+      width: 345px;
+      height: 450px;
+
+      .item-header {
+        flex-direction: row;
+        justify-content: space-between;
+
+        .item-fav {
+          margin: 2px;
+        }
+      }
+    }
   }
 }

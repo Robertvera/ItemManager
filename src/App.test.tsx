@@ -1,13 +1,12 @@
 import React from 'react';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
-import { prettyDOM } from '@testing-library/dom';
 import { act } from 'react-dom/test-utils';
 import MockIntersectionObserver from './mocks/MockIntersectionObserver';
 import { mockFetch } from './mocks/MockFetch';
 import App from './App';
 
 // Aux functions
-const getTitlesFromNodes = (items: HTMLElement[]) => {
+const getTitlesFromNodes = (items: HTMLElement[] | NodeListOf<Element>) => {
     const resultTitleMap: string[] = []
 
     items.forEach((item) => {
@@ -124,5 +123,130 @@ describe('Item listing, searching, ordering and sorting', () => {
         const items = screen.queryAllByTestId(/item-element/i)
 
         expect(items).toHaveLength(0);
+    })
+})
+
+describe('Favorites module', () => {
+    test('Modal is hidden when rendering', async () => {
+        const modal = await screen.findByTestId(/modal-container/i);
+        const modalClassList = modal.classList.toString();
+
+        expect(modalClassList).toInclude('hidden');
+        expect(modalClassList).not.toInclude('visible');
+    })
+
+    test('Clicking on floating button makes modal visible', async () => {
+        const floatingButton = await screen.findByLabelText(/button-show-modal/i);
+        fireEvent.click(floatingButton);
+
+        const modal = await screen.findByTestId(/modal-container/i);
+        const modalClassList = modal.classList.toString();
+
+        expect(modalClassList).toInclude('visible');
+        expect(modalClassList).not.toInclude('hidden');
+    })
+
+    test('Favorite list is empty if no favorites added', async () => {
+        const modal = await screen.findByTestId(/modal-container/i);
+        const itemsInModal = modal.querySelectorAll('.grid-item');
+
+        expect(itemsInModal).toHaveLength(0);
+    })
+
+    test('Favorite list shows empty message when it has no items', async () => {
+        const modal = await screen.findByTestId(/modal-container/i);
+        const itemsInModal = modal.querySelectorAll('.grid-item');
+
+        expect(itemsInModal).toHaveLength(0);
+
+        const message = await screen.findByText(/show some love/i);
+
+        expect(message).toBeDefined();
+    })
+
+    test('Clicking on heart icon puts first item to favorite list', async () => {
+        const items = await findItems();
+        const firstItem = items[0];
+        const favButton= firstItem.querySelector('.item-fav');
+
+        if (favButton) fireEvent.click(favButton);
+
+        const modal = await screen.findByTestId(/modal-container/i);
+        const itemsInModal = modal.querySelectorAll('.grid-item');
+
+        const firstItemTitle = itemsInModal[0].querySelector('h1')?.textContent;
+        const expectedFirstItemFavTitle = 'Barbacoa';
+
+        expect(firstItemTitle).toBe(expectedFirstItemFavTitle);
+    })
+
+    test('Clicking on white heart icon removes item from favorite list', async () => {
+        const items = await findItems();
+        const firstItem = items[0];
+        const favButton= firstItem.querySelector('.item-fav');
+
+        if (favButton) fireEvent.click(favButton);
+
+        let modal = await screen.findByTestId(/modal-container/i);
+        let itemsInModal = modal.querySelectorAll('.grid-item');
+
+        const itemUnfavButton = itemsInModal[0].querySelector('.item-fav');
+        
+        if (itemUnfavButton) fireEvent.click(itemUnfavButton);
+        modal = await screen.findByTestId(/modal-container/i);
+        itemsInModal = modal.querySelectorAll('.grid-item');
+
+        expect(itemsInModal).toHaveLength(0);
+    })
+
+    test('Adding 2 favorites to favorite list and removing one leaves one item to favorite list', async () => {
+        const items = await findItems();
+        const firstItem = items[0];
+        const secondItem = items[1];
+        const favButton1= firstItem.querySelector('.item-fav');
+        const favButton2= secondItem.querySelector('.item-fav');
+
+        if (favButton1) fireEvent.click(favButton1);
+        if (favButton2) fireEvent.click(favButton2);
+
+        let modal = await screen.findByTestId(/modal-container/i);
+        let itemsInModal = modal.querySelectorAll('.grid-item');
+
+        let expectedTitles = ['Barbacoa', 'Batidora'];
+        let resultTitles = getTitlesFromNodes(itemsInModal)
+
+        expect(itemsInModal).toHaveLength(2);
+        expect(resultTitles).toEqual(expectedTitles);
+
+        const itemUnfavButton1 = itemsInModal[0].querySelector('.item-fav');
+        
+        if (itemUnfavButton1) fireEvent.click(itemUnfavButton1);
+        modal = await screen.findByTestId(/modal-container/i);
+        itemsInModal = modal.querySelectorAll('.grid-item');
+        expectedTitles = ['Batidora'];
+        resultTitles = getTitlesFromNodes(itemsInModal)
+
+        expect(itemsInModal).toHaveLength(1);
+        expect(resultTitles).toEqual(expectedTitles);
+    })
+
+    test('Clicking on closing button makes modal hidden', async () => {
+        const floatingButton = await screen.findByLabelText(/button-show-modal/i);
+        fireEvent.click(floatingButton);
+
+        let modal = await screen.findByTestId(/modal-container/i);
+        let modalClassList = modal.classList.toString();
+
+        expect(modalClassList).toInclude('visible');
+        expect(modalClassList).not.toInclude('hidden');
+
+        const closingButton = await screen.findByLabelText(/button-hide-modal/i);
+        fireEvent.click(closingButton);
+
+        modal = await screen.findByTestId(/modal-container/i);
+        modalClassList = modal.classList.toString();
+
+        expect(modalClassList).toInclude('hidden');
+        expect(modalClassList).not.toInclude('visible');
     })
 })

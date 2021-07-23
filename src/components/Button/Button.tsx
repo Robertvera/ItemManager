@@ -28,7 +28,7 @@ const Button = ({children, action, color = 'primary', btnType = 'not-floating', 
     const { buttonAction } = useContext(Context);
 
     return (
-        <button aria-label='button' type='button' onClick={(e) => { buttonAction(e, action) } } className={className} id={id}>
+        <button aria-label={`button-${action}`} type='button' onClick={(e) => { buttonAction(e, action) } } className={className} id={id}>
             <span>{children}</span>
         </button>
     );

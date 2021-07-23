@@ -15,7 +15,7 @@ const Modal = () => {
     } = useContext(Context);
 
     return (
-        <div className={`modal__container modal__container--${modalVisibility}`}>
+        <div data-testid='modal-container' className={`modal__container modal__container--${modalVisibility}`}>
             <main id='modal__wrapper'>
                 <div className='modal__header'>
                     <h1>FAVORITES</h1>

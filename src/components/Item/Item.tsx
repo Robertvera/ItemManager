@@ -2,11 +2,12 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { MouseEvent } from 'react';
 import './styles.scss';
+import ClampLines from 'react-clamp-lines';
 import LazyImage from '../LazyImage/LazyImage';
 
 type ItemProps = Item & { fav?: boolean; onClickFav?: (event: MouseEvent<HTMLElement>) => void; }
 
-const Item = ({ title, description, price, email, image, layout = 'full', fav = false, onClickFav = () => {} }: ItemProps) => {
+const Item = ({ title, description = '', price, email, image, layout = 'full', fav = false, onClickFav = () => {} }: ItemProps) => {
     const isFullLayout = layout === 'full';
 
     return (
@@ -15,14 +16,24 @@ const Item = ({ title, description, price, email, image, layout = 'full', fav = 
             <div className='item-body'>
                 <div className='item-header'>
                     <h1>{title}</h1>
-                    <div onClick={onClickFav} className='item-fav' role='button'>
+                    <div onClick={onClickFav} className='item-fav' role='button' aria-label='button-fav'>
                         {fav ? <span>❤️</span> : <span>🤍</span> }
                         
                     </div>
-                    {isFullLayout ? <span>{price} €</span> : null}
+                    {isFullLayout ? <span className='item-price'>{price} €</span> : null}
                 </div>
-                {isFullLayout ? <p>{description}</p> : null}
-                {isFullLayout ? <span>{email}</span> : null}
+                <div className='item-description__container'>
+                    {isFullLayout ? <ClampLines text={description}
+                                                id='item-description'
+                                                lines={3}
+                                                ellipsis='...'
+                                                buttons={false}
+                                                className='item-description'
+                                                innerElement='p' 
+                                                /> 
+                                    : null}
+                </div>
+                {isFullLayout ? <span className='item-email'>{`@: ${email}`}</span> : null}
             </div>
         </div>
     )

@@ -20,9 +20,6 @@ const useFetch = (fetchService: () => Promise<Response>, setter: React.Dispatch<
             } catch (error) {
                 setError(error);
             } finally {
-                // setTimeout(() => {
-                //     setIsLoading(false);
-                // }, 1000)
                 setIsLoading(false);
             }
         }

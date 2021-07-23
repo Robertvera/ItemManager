@@ -6,7 +6,7 @@ import ItemContext from '../../storage/items';
 
 const Home = () => (
     <>
-        <main className='home__container'>
+        <main data-testid='home-container' className='home__container'>
             <Filter />
             <ItemContext>
                 <ItemList />
