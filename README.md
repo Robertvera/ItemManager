@@ -61,7 +61,6 @@ All tests can be run using
 
 - The project was scaffolded using the beta 2 version of Parcel. I used this boilerplate for its unmatched speed and zero configuration feature.
 - I decide to use TypeScript as it has no implications on the genereated bundle-size (as its compiled during the build) and makes the code much more secure because of the static typing, adding an additional layer of test along with unit test and e2e test.
-- I decided to use TypeScript for coding out the app, because static typing both makes the code more robust + I as a developer have a nicer dev-experience thanks to better code completion. As the TypeScript gets compiled away at build-time, there is also no negative impact on the generated bundle-size.
 - I tried to not rely on external dependencies besides React library and a small React component installed through npm.
 - I thought of using styled components for styling my app as it is a standard right now throughout React community, but I finally went for SaSS preprocessor as it was a nice have in the requirements :)
 - My goal was to build a minimalistic and easy-to-use UI.
