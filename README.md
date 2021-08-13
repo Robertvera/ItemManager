@@ -2,7 +2,7 @@
 
 # Item Manager
 
-The goal was to create a small app that fetches an API endpoint and shows the items in a result page.
+The goal was to create a small APP that fetches an API endpoint and shows the items in a result page.
 
 ## Features
 
